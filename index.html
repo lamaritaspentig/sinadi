@@ -1,104 +1,45 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LAMARITA - UPT SPF SMPN 3 Makassar</title>
+  <link rel="icon" href="#" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #eee;
+      overflow: hidden; /* Mencegah scroll ganda */
+    }
 
-<meta charset="UTF-8">
+    .iframe-container {
+      width: 100%;
+      height: 100dvh; /* Menggunakan dvh agar pas di mobile browser */
+      overflow: hidden;
+    }
 
-<title>LAMARITA</title>
-
-<style>
-
-body{
-
-font-family:Arial;
-
-background:#f5f5f5;
-
-padding:30px;
-
-}
-
-.card{
-
-max-width:600px;
-
-margin:auto;
-
-background:white;
-
-padding:20px;
-
-border-radius:10px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.2);
-
-}
-
-button{
-
-padding:12px 20px;
-
-cursor:pointer;
-
-}
-
-pre{
-
-background:#eee;
-
-padding:15px;
-
-}
-
-</style>
-
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="card">
-
-<h2>LAMARITA</h2>
-
-<p>UPT SPF SMP Negeri 3 Makassar</p>
-
-<button onclick="cekServer()">
-Cek Server
-</button>
-
-<pre id="hasil"></pre>
-
-</div>
-
-<script>
-
-const URL_SCRIPT="https://script.google.com/a/~/macros/s/AKfycbytmuevnNiT1ZZJYT6D-popHsMpM53rl64GZSOe3yT9QqJ0GL53E9jH35Ggipx2zM41/exec";
-
-function cekServer(){
-
-fetch(URL_SCRIPT)
-
-.then(r=>r.json())
-
-.then(data=>{
-
-document.getElementById("hasil").textContent=
-JSON.stringify(data,null,2);
-
-})
-
-.catch(err=>{
-
-document.getElementById("hasil").textContent=
-err;
-
-});
-
-}
-
-</script>
-
+  <div class="iframe-container">
+    <iframe
+      id="app"
+      src="https://script.google.com/a/~/macros/s/AKfycbytmuevnNiT1ZZJYT6D-popHsMpM53rl64GZSOe3yT9QqJ0GL53E9jH35Ggipx2zM41/exec"
+      scrolling="yes"
+      allowfullscreen="true"
+      webkitallowfullscreen="true"
+      mozallowfullscreen="true"
+      allow="fullscreen; camera; microphone; display-capture; geolocation;">
+    </iframe>
+  </div>
 </body>
-
 </html>

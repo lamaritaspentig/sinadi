@@ -2,23 +2,30 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>LAMARITA - UPT SPF SMPN 3 Makassar</title>
   <link rel="icon" href="#" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
       background-color: #eee;
-      overflow: hidden; /* Mencegah scroll ganda */
+      overflow: hidden; /* Mencegah scroll pada body utama */
+      position: fixed;  /* Tambahan untuk iOS Safari agar tidak memantul (bounce effect) */
     }
 
     .iframe-container {
       width: 100%;
-      height: 100dvh; /* Menggunakan dvh agar pas di mobile browser */
+      height: 100vh;   /* Fallback untuk browser lawas */
+      height: 100dvh;  /* Mengikuti dynamic viewport mobile modern */
       overflow: hidden;
+      -webkit-overflow-scrolling: touch; /* Membuat scroll di iOS lebih mulus jika ada */
     }
 
     iframe {
@@ -30,16 +37,15 @@
   </style>
 </head>
 <body>
+
   <div class="iframe-container">
     <iframe
       id="app"
-      src="https://script.google.com/a/~/macros/s/AKfycbytmuevnNiT1ZZJYT6D-popHsMpM53rl64GZSOe3yT9QqJ0GL53E9jH35Ggipx2zM41/exec"
-      scrolling="yes"
-      allowfullscreen="true"
-      webkitallowfullscreen="true"
-      mozallowfullscreen="true"
+      src="https://script.google.com/macros/s/AKfycbytmuevnNiT1ZZJYT6D-popHsMpM53rl64GZSOe3yT9QqJ0GL53E9jH35Ggipx2zM41/exec"
+      allowfullscreen
       allow="fullscreen; camera; microphone; display-capture; geolocation;">
     </iframe>
   </div>
+
 </body>
 </html>

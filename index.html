@@ -5,14 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
   <title>LAMARITA - UPT SPF SMPN 3 Makassar</title>
   
-  <!-- Koneksi PWA & Desain iOS Safari -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#1e40af" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="LAMARITA" />
-  <link rel="apple-touch-icon" href="icon-192.png" />
-  <link rel="icon" type="image/png" href="icon-192.png" />
+  
+  <!-- Menggunakan logo spentig.ico sebagai ikon utama Apple & Favicon -->
+  <link rel="apple-touch-icon" href="spentig.ico" />
+  <link rel="icon" type="image/x-icon" href="spentig.ico" />
+
+  <!-- Menggunakan Tailwind CSS untuk tata letak modern -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     html, body {
@@ -46,112 +50,52 @@
       opacity: 1;
     }
 
-    /* Layar Loading Premium */
-    #loader-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      color: white;
-      transition: opacity 0.6s ease-out, visibility 0.6s;
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 4px 10px rgba(255,255,255,0.15)); }
+      50% { transform: scale(1.05); filter: drop-shadow(0 10px 25px rgba(255,255,255,0.4)); }
     }
 
+    .pulsing-logo {
+      animation: logoPulse 2.5s ease-in-out infinite;
+    }
+
+    /* Spinner Animasi */
     .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(255, 255, 255, 0.2);
-      border-top: 5px solid #ffffff;
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top: 4px solid #ffffff;
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-
-    .logo-text {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    .sub-text {
-      font-size: 13px;
-      opacity: 0.8;
-      font-weight: 400;
-      letter-spacing: 1px;
-    }
-
-    /* Detektor Masalah & Tombol Darurat */
-    #error-helper {
-      display: none;
-      margin-top: 25px;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 12px;
-      max-width: 320px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    #error-helper p {
-      font-size: 12px;
-      margin: 0 0 10px 0;
-      line-height: 1.5;
-    }
-
-    .btn-action {
-      background-color: #ffffff;
-      color: #1e40af;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.2s;
-    }
-
-    .btn-action:active {
-      transform: scale(0.95);
     }
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
-<body>
+<body class="bg-gray-100">
 
-  <div id="loader-container">
-    <div class="spinner"></div>
-    <div class="logo-text">LAMARITA</div>
-    <div class="sub-text">UPT SPF SMPN 3 MAKASSAR</div>
-    
-    <!-- Muncul otomatis jika loading halaman Google Script terlalu lama (lebih dari 7 detik) -->
-    <div id="error-helper">
-      <p>Pemuatan terasa lambat? Pastikan Anda sudah login akun Google belajar/kerja atau periksa jaringan internet Anda.</p>
-      <a href="https://script.google.com/a/~/macros/s/AKfycbytmuevnNiT1ZZJYT6D-popHsMpM53rl64GZSOe3yT9QqJ0GL53E9jH35Ggipx2zM41/exec" 
-         target="_blank" 
-         class="btn-action">
-         Buka Langsung di Tab Baru
-      </a>
+  <div id="loader-container" class="absolute inset-0 bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 flex flex-col justify-content-center items-center z-50 text-white transition-all duration-700 ease-out">
+    <div class="flex flex-col items-center max-w-xs text-center px-6">
+      
+      <!-- Menampilkan logo spentig.ico secara elegan -->
+      <img src="spentig.ico" alt="Logo UPT SPF SMPN 3 Makassar" class="w-32 h-32 object-contain pulsing-logo mb-6" onerror="this.onerror=null; this.src='https://placehold.co/128x128/1e40af/ffffff?text=SPENTIG';">
+      
+      <div class="spinner mb-6"></div>
+      <h1 class="text-2xl font-black tracking-wider drop-shadow-md">LAMARITA</h1>
+      <p class="text-[11px] uppercase tracking-widest text-blue-200 mt-2 font-medium">UPT SPF SMPN 3 MAKASSAR</p>
+      
+      <!-- Tombol Pintas Jika Google Script Lambat Terbuka -->
+      <div id="error-helper" class="hidden mt-8 p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 animate-bounce">
+        <p class="text-xs text-blue-100 mb-3 leading-relaxed">Pemuatan terasa lambat? Pastikan Anda menggunakan koneksi internet yang stabil.</p>
+        <a href="https://script.google.com/a/~/macros/s/AKfycbytmuevnNiT1ZZJYT6D-popHsMpM53rl64GZSOe3yT9QqJ0GL53E9jH35Ggipx2zM41/exec" 
+           target="_blank" 
+           class="inline-block bg-white text-blue-800 text-xs font-bold px-4 py-2 rounded-full shadow hover:bg-blue-50 active:scale-95 transition">
+           Buka Langsung
+        </a>
+      </div>
     </div>
   </div>
 
@@ -167,37 +111,108 @@
     </iframe>
   </div>
 
+  <!-- Banner Android / Chrome -->
+  <div id="pwa-install-banner" class="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-white/95 backdrop-blur shadow-2xl rounded-2xl p-4 flex items-center justify-between border border-gray-100 transform translate-y-32 opacity-0 transition-all duration-500 ease-out z-40">
+    <div class="flex items-center">
+      <img src="spentig.ico" alt="App Icon" class="w-12 h-12 rounded-xl mr-3 object-contain shadow-md" onerror="this.src='https://placehold.co/128x128/1e40af/ffffff?text=L';">
+      <div>
+        <h4 class="font-bold text-sm text-gray-800">Pasang LAMARITA</h4>
+        <p class="text-xs text-gray-500">Akses lebih cepat dari beranda HP</p>
+      </div>
+    </div>
+    <div class="flex space-x-2">
+      <button id="btn-pwa-close" class="text-xs text-gray-400 hover:text-gray-600 px-2 py-1">Nanti</button>
+      <button id="btn-pwa-install" class="bg-blue-600 hover:bg-blue-700 active:scale-95 text-white text-xs font-bold px-4 py-2 rounded-xl shadow transition">Pasang</button>
+    </div>
+  </div>
+
+  <!-- Banner Instruksi Manual untuk iOS / iPhone -->
+  <div id="pwa-ios-banner" class="fixed bottom-6 left-4 right-4 md:left-auto md:right-6 md:w-96 bg-white/95 backdrop-blur shadow-2xl rounded-2xl p-5 border border-gray-100 transform translate-y-32 opacity-0 transition-all duration-500 ease-out z-40 hidden">
+    <div class="flex items-start">
+      <img src="spentig.ico" alt="App Icon" class="w-12 h-12 rounded-xl mr-3 object-contain shadow-md" onerror="this.src='https://placehold.co/128x128/1e40af/ffffff?text=L';">
+      <div class="flex-1">
+        <h4 class="font-bold text-sm text-gray-800">Pasang di iPhone Anda</h4>
+        <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+          Ketuk ikon <span class="font-bold text-blue-600">Bagikan (Share)</span> di bagian bawah Safari, lalu gulir ke bawah dan pilih <span class="font-bold text-blue-600">"Tambah ke Layar Utama" (Add to Home Screen)</span>.
+        </p>
+      </div>
+      <button id="btn-ios-close" class="text-gray-400 hover:text-gray-600 text-lg leading-none -mt-1 ml-2">&times;</button>
+    </div>
+  </div>
+
   <script>
     const iframe = document.getElementById('app');
     const loader = document.getElementById('loader-container');
     const errorHelper = document.getElementById('error-helper');
+    const installBanner = document.getElementById('pwa-install-banner');
+    const iosBanner = document.getElementById('pwa-ios-banner');
+    
+    let deferredPrompt;
 
-    // Jika dalam 7 detik iframe belum memberikan sinyal selesai muat, tampilkan tombol bantuan
-    const timeoutTracker = setTimeout(() => {
-      errorHelper.style.display = 'block';
-    }, 7000);
+    // Aktifkan bantuan link jika pemuatan Google Script > 8 detik
+    const timer = setTimeout(() => {
+      errorHelper.classList.remove('hidden');
+    }, 8000);
 
-    // Ketika Iframe berhasil dimuat sepenuhnya
+    // Hilangkan loader saat iframe sepenuhnya termuat
     iframe.addEventListener('load', () => {
-      clearTimeout(timeoutTracker);
+      clearTimeout(timer);
       iframe.classList.add('loaded');
       
-      // Berikan efek transisi halus saat menutup loader
-      loader.style.opacity = '0';
+      loader.classList.add('opacity-0', 'scale-95');
       setTimeout(() => {
-        loader.style.visibility = 'hidden';
-      }, 600);
+        loader.style.display = 'none';
+      }, 700);
     });
 
+    // Menangkap request instalasi otomatis dari browser (Android/Chrome/Edge)
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Tampilkan banner instalasi melayang
+      setTimeout(() => {
+        installBanner.classList.remove('translate-y-32', 'opacity-0');
+      }, 2000);
+    });
+
+    // Jalankan instalasi saat tombol "Pasang" di-klik
+    document.getElementById('btn-pwa-install').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to install prompt: ${outcome}`);
+        deferredPrompt = null;
+        hideBanner();
+      }
+    });
+
+    document.getElementById('btn-pwa-close').addEventListener('click', hideBanner);
+    function hideBanner() {
+      installBanner.classList.add('translate-y-32', 'opacity-0');
+    }
+
+    // Deteksi khusus iOS (iPhone) untuk memunculkan panduan manual
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+    if (isIOS && !isStandalone) {
+      iosBanner.classList.remove('hidden');
+      setTimeout(() => {
+        iosBanner.classList.remove('translate-y-32', 'opacity-0');
+      }, 3000);
+    }
+
+    document.getElementById('btn-ios-close').addEventListener('click', () => {
+      iosBanner.classList.add('translate-y-32', 'opacity-0');
+    });
+
+    // Registrasi Service Worker PWA
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js')
-          .then((registration) => {
-            console.log('Service Worker berhasil terdaftar di ruang lingkup:', registration.scope);
-          })
-          .catch((error) => {
-            console.warn('Gagal mendaftarkan Service Worker:', error);
-          });
+          .then((reg) => console.log('Service Worker aktif pada lingkup:', reg.scope))
+          .catch((err) => console.warn('Pendaftaran Service Worker gagal:', err));
       });
     }
   </script>

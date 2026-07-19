@@ -1,0 +1,42 @@
+{
+"id": "./index.html",
+"scope": "./",
+"start_url": "./index.html",
+"name": "LAMARITA - UPT SPF SMPN 3 Makassar",
+"short_name": "LAMARITA",
+"description": "Aplikasi Sistem Informasi Layanan Mandiri dan Kemitraan Tata Usaha UPT SPF SMPN 3 Makassar",
+"display": "standalone",
+"orientation": "portrait",
+"background_color": "#1e40af",
+"theme_color": "#1e40af",
+"categories": [
+"education",
+"productivity"
+],
+"icons": [
+{
+"src": "icon-192.png",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "any"
+},
+{
+"src": "icon-192.png",
+"sizes": "192x192",
+"type": "image/png",
+"purpose": "maskable"
+},
+{
+"src": "icon-512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "any"
+},
+{
+"src": "icon-512.png",
+"sizes": "512x512",
+"type": "image/png",
+"purpose": "maskable"
+}
+]
+}
